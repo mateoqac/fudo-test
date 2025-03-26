@@ -1,0 +1,23 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    json (2.10.2)
+    jwt (2.10.1)
+      base64
+    rack (3.1.12)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  json
+  jwt
+  rack
+
+RUBY VERSION
+   ruby 3.3.4p94
+
+BUNDLED WITH
+   2.6.6

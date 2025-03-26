@@ -1,0 +1,1 @@
+HTTP es el protocolo que hace posible que cuando escribís una dirección web en tu navegador, puedas ver las páginas y contenido que querés. Básicamente, es el mensajero que lleva tus peticiones al servidor y te trae de vuelta lo que necesitás.

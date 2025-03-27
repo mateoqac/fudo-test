@@ -1,0 +1,118 @@
+openapi: 3.0.3
+info:
+  title: Product API
+  version: 1.0.0
+servers:
+  - url: http://localhost:9292
+paths:
+  /auth:
+    post:
+      summary: Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user: { type: string }
+                password: { type: string }
+      responses:
+        200:
+          description: Token JWT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+  /products:
+    post:
+      summary: Crear producto (asíncrono)
+      description: Este endpoint es asíncrono. El producto estará disponible después de 5 segundos.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                description: { type: string }
+                price: { type: number }
+                stock: { type: integer }
+              required:
+                - name
+                - description
+      responses:
+        202:
+          description: Aceptado para procesamiento
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product_id: { type: string }
+                  status: { type: string, enum: [processing] }
+    get:
+      summary: Listar productos
+      description: Retorna todos los productos disponibles.
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    name: { type: string }
+                    description: { type: string }
+                    price: { type: number }
+                    stock: { type: integer }
+  /products/{id}:
+    get:
+      summary: Obtener un producto por ID
+      description: Retorna los detalles de un producto específico.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID único del producto
+      responses:
+        200:
+          description: Detalles del producto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  description: { type: string }
+                  price: { type: number }
+                  stock: { type: integer }
+        404:
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -2,8 +2,15 @@
 
 source 'https://rubygems.org'
 
-ruby File.read('.ruby-version').strip
-
+gem 'dotenv'
 gem 'json'
 gem 'jwt'
+gem 'puma'
 gem 'rack'
+gem 'rackup'
+
+group :test do
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'timecop'
+end

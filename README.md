@@ -172,13 +172,17 @@ Los tests están organizados siguiendo la misma estructura que el código:
 
 ```
 spec/
-├── controllers/              # Tests de controladores
+├── auth_middleware_spec.rb       # Tests del middleware de autenticación
+├── config_spec.rb                # Tests de configuración
+├── router_spec.rb                # Tests del router
+├── spec_helper.rb                # Configuración de RSpec
+├── controllers/                  # Tests de controladores
 │   ├── auth_controller_spec.rb
 │   ├── products_controller_spec.rb
 │   └── static_controller_spec.rb
-├── models/                   # Tests de modelos
-│   └── product_store_spec.rb
-└── router_spec.rb            # Tests del router
+└── models/                       # Tests de modelos
+    ├── product_spec.rb
+    └── product_store_spec.rb
 ```
 
 ## Estructura del Proyecto

@@ -3,6 +3,8 @@
 require 'securerandom'
 
 class ProductStore
+  attr_accessor :products
+
   def self.instance
     @instance ||= new
   end
@@ -13,7 +15,6 @@ class ProductStore
   end
 
   def create(name:, description:, price:, stock:)
-    # Validar los datos antes de crear el thread
     Product.validate_params(name:, description:, price:, stock:)
 
     product_id = SecureRandom.uuid

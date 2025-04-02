@@ -4,8 +4,6 @@ require 'jwt'
 require_relative 'config'
 
 class AuthMiddleware
-  class InvalidToken < StandardError; end
-
   def initialize(app, protected_paths = ['/products'])
     @app = app
     @protected_paths = protected_paths

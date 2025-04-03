@@ -15,35 +15,30 @@ describe Router do
 
   describe '#route' do
     it 'enruta correctamente las solicitudes a sus controladores' do
-      # Test para ruta /auth
       allow(request).to receive(:path).and_return('/auth')
       allow(request).to receive(:request_method).and_return('POST')
 
       expect_any_instance_of(AuthController).to receive(:authenticate)
       router.route(request, response)
 
-      # Test para ruta /products (GET)
       allow(request).to receive(:path).and_return('/products')
       allow(request).to receive(:request_method).and_return('GET')
 
       expect_any_instance_of(ProductsController).to receive(:list)
       router.route(request, response)
 
-      # Test para ruta /products (POST)
       allow(request).to receive(:path).and_return('/products')
       allow(request).to receive(:request_method).and_return('POST')
 
       expect_any_instance_of(ProductsController).to receive(:create)
       router.route(request, response)
 
-      # Test para ruta /products/:id
       allow(request).to receive(:path).and_return('/products/123')
       allow(request).to receive(:request_method).and_return('GET')
 
       expect_any_instance_of(ProductsController).to receive(:show).with('123')
       router.route(request, response)
 
-      # Test para archivos estáticos
       allow(request).to receive(:path).and_return('/openapi.yaml')
       allow(request).to receive(:request_method).and_return('GET')
 

@@ -7,7 +7,6 @@ class StaticController
   end
 
   def serve_file(filename = nil, content_type = nil, cache_control = nil)
-    # Si no se proporcionan argumentos, intentar obtenerlos de la ruta
     route = Router.routes.find { |r| r[:path] == @request.path && r[:controller] == self.class }
 
     filename ||= route&.dig(:args, 0)

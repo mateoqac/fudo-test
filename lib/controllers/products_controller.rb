@@ -33,6 +33,8 @@ class ProductsController
   end
 
   def show(id)
+    return unless @request.get?
+
     product = ProductStore.instance.find(id)
 
     if product
